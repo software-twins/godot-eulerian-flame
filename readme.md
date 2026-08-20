@@ -69,7 +69,7 @@ func add_obstacle_rect(pos: Vector2, size: Vector2, solid: bool):
 | `get_density_bytes()` | Returns the entire density field at once — to fill the texture. |
 | `set_obstacle(x, y, solid)` | Places or removes an obstacle. |
 
-### `init_simulation` Parameters
+** `init_simulation` Parameters
 
 - `nx`, `ny` — grid size in cells: the larger it is, the more detailed, but more expensive in performance.
 - `dx`, `dy` — size of one cell. Usually `1.0` is enough.
@@ -80,7 +80,7 @@ func add_obstacle_rect(pos: Vector2, size: Vector2, solid: bool):
 
 Below are all the methods registered via `_bind_methods()` and available from GDScript. Types are indicated in GDScript notation.
 
-### `init_simulation(nx: int, ny: int, dx: float, dy: float, viscosity: float, density: float) -> void`
+** `init_simulation(nx: int, ny: int, dx: float, dy: float, viscosity: float, density: float) -> void`
 Creates and zeroes out the simulation grid: velocity, pressure, and density fields, obstacle array. Called once before the first simulation frame (usually in `_ready()`). A repeated call recreates the grid from scratch.
 
 - `nx`, `ny` — width and height of the grid in cells.
@@ -88,27 +88,27 @@ Creates and zeroes out the simulation grid: velocity, pressure, and density fiel
 - `viscosity` — kinematic viscosity of the medium.
 - `density` — base density of the medium.
 
-### `add_force(cx: int, cy: int, fx: float, fy: float, dt: float) -> void`
+** `add_force(cx: int, cy: int, fx: float, fy: float, dt: float) -> void`
 Adds a momentum impulse to cell `(cx, cy)`.
 
 - `cx`, `cy` — grid cell coordinates.
 - `fx`, `fy` — force components along X and Y.
 - `dt` — time step, usually `delta` from `_process` is passed.
 
-### `add_density(cx: int, cy: int, amount: float, dt: float) -> void`
+** `add_density(cx: int, cy: int, amount: float, dt: float) -> void`
 Adds density ("smoke"/"dye"/"fire") to cell `(cx, cy)`. The value saturates at `100.0`.
 
 - `cx`, `cy` — grid cell coordinates.
 - `amount` — intensity of the added density.
 - `dt` — time step.
 
-### `get_density_bytes() -> PackedByteArray`
+** `get_density_bytes() -> PackedByteArray`
 Returns the entire density field at once as a byte array of length `nx * ny` (one byte per cell, values `0–255`). Values before conversion are limited to the `[0.0, 1.0]` range. Ready for direct writing to a `FORMAT_R8` `Image` via `Image.set_data()`.
 
 - No arguments.
 - Returns: `PackedByteArray` of size `nx * ny`.
 
-### `set_obstacle(x: int, y: int, is_solid: bool) -> void`
+** `set_obstacle(x: int, y: int, is_solid: bool) -> void`
 Marks cell `(x, y)` as a solid obstacle (`true`) or removes the mark (`false`). Outside the grid boundaries, the call is ignored.
 
 - `x`, `y` — cell coordinates.
@@ -126,4 +126,4 @@ Marks cell `(x, y)` as a solid obstacle (`true`) or removes the mark (`false`). 
 
 ## License
 
-Add the project license here (e.g., MIT).
+Godot Integration (GDScript, scenes, UI): Distributed under the MIT License. Users are free to modify the scripts and plugin logic in any way they see fit.
