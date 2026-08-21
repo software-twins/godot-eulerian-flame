@@ -1,4 +1,4 @@
-# FluidSim — CPU-based Fluid Simulation Library
+# FluidSim — CPU-based Eulerian Fluid Solver
 
 `FluidSim` is a library for numerical simulation of continuous media, written in C++23 and designed for CPU execution rather than GPU. The mathematical core is an Eulerian grid-based solver for incompressible fluid. Using the fractional step (projection) method on a Staggered Grid (MAC) guarantees mass conservation (divergence-free velocity field) and completely eliminates "checkerboard pressure" artifacts.
 
