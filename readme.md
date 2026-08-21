@@ -1,6 +1,6 @@
-# FluidSim — CPU-based Eulerian Fluid Solver
+# FlameSim — CPU-based Eulerian Fluid Solver
 
-`FluidSim` is a library for numerical simulation of continuous media, written in C++23 and designed for CPU execution rather than GPU. The mathematical core is an Eulerian grid-based solver for incompressible fluid. Using the fractional step (projection) method on a Staggered Grid (MAC) guarantees mass conservation (divergence-free velocity field) and completely eliminates "checkerboard pressure" artifacts.
+`FlameSim` is a library for numerical simulation of continuous media, written in C++23 and designed for CPU execution rather than GPU. The mathematical core is an Eulerian grid-based solver for incompressible fluid. Using the fractional step (projection) method on a Staggered Grid (MAC) guarantees mass conservation (divergence-free velocity field) and completely eliminates "checkerboard pressure" artifacts.
 
 This approach makes it a potential candidate for real-time applications, such as embedded systems, where predictability and control over the computational budget are important.
 
