@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://vnq2mdxdf807"]
 
-[ext_resource type="Shader" uid="uid://cec5jnkk1ytyd" path="res://flame_sim.gdshader" id="1_sxwh4"]
-[ext_resource type="Script" uid="uid://bhipyvkkwvofr" path="res://flame_sim.gd" id="2_c0rxx"]
-[ext_resource type="Script" uid="uid://cefhbq5mhv3so" path="res://panel.gd" id="3_j7asc"]
+[ext_resource type="Shader" uid="uid://by5olu88yl6gl" path="res://addons/flamesim/flame_sim.gdshader" id="1_sxwh4"]
+[ext_resource type="Script" uid="uid://56p06sodnay" path="res://addons/flamesim/flame_sim.gd" id="2_c0rxx"]
+[ext_resource type="Script" uid="uid://40jwonn3fowc" path="res://addons/flamesim/panel.gd" id="3_j7asc"]
 
 [sub_resource type="Gradient" id="Gradient_fp5a8"]
 offsets = PackedFloat32Array(0, 0.054242004, 0.3769124, 0.7232267, 1)
