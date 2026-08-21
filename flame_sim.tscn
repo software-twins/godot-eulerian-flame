@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://vnq2mdxdf807"]
+
+[ext_resource type="Shader" uid="uid://cec5jnkk1ytyd" path="res://flame_sim.gdshader" id="1_sxwh4"]
+[ext_resource type="Script" uid="uid://bhipyvkkwvofr" path="res://flame_sim.gd" id="2_c0rxx"]
+[ext_resource type="Script" uid="uid://cefhbq5mhv3so" path="res://panel.gd" id="3_j7asc"]
+
+[sub_resource type="Gradient" id="Gradient_fp5a8"]
+offsets = PackedFloat32Array(0, 0.054242004, 0.3769124, 0.7232267, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.56728673, 0.08267418, 1.4439226e-07, 1, 0.82679933, 0.41696393, 7.70092e-07, 1, 0.90588236, 0.90588236, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_knpvq"]
+gradient = SubResource("Gradient_fp5a8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpe4p"]
+shader = ExtResource("1_sxwh4")
+shader_parameter/color_ramp = SubResource("GradientTexture1D_knpvq")
+shader_parameter/fire_intensity = 1.2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_088qa"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 40.0
+bg_color = Color(0.6, 0.6, 0.96862745, 0.07058824)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Node2D" type="Node2D"]
+
+[node name="FlameSim" type="FlameSim" parent="."]
+material = SubResource("ShaderMaterial_hpe4p")
+centered = false
+script = ExtResource("2_c0rxx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_direction = 2
+offset_left = 16.0
+offset_top = -226.0
+offset_right = 486.0
+offset_bottom = 33.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_088qa")
+script = ExtResource("3_j7asc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Add/remove obstacles (as calc grid cells)"
+justification_flags = 131
+
+[node name="Control" type="Control" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton2" type="CheckButton" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="CanvasLayer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Wind force"
+
+[node name="wind_slider" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 50.0
+
+[node name="Control" type="Control" parent="CanvasLayer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Amount of combustible substance"
+
+[node name="substance_slider" type="HSlider" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 0.2
+allow_greater = true
+
+[connection signal="toggled" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/CheckButton" to="CanvasLayer/Panel" method="_on_check_button_toggled"]
+[connection signal="toggled" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/CheckButton2" to="CanvasLayer/Panel" method="_on_check_button_2_toggled"]
+[connection signal="changed" from="CanvasLayer/Panel/VBoxContainer/wind_slider" to="CanvasLayer/Panel" method="_on_wind_slider_changed"]
+[connection signal="changed" from="CanvasLayer/Panel/VBoxContainer/substance_slider" to="CanvasLayer/Panel" method="_on_substance_slider_changed"]
